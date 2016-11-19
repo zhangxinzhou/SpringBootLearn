@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "com.myspace.name",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.name'"
+  },
+  {
+    "name": "com.myspace.age",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.age'"
+  },
+  {
+    "name": "com.myspace.desc",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.desc'"
+  },
+  {
+    "name": "com.myspace.value",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.value'"
+  },
+  {
+    "name": "com.myspace.number",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.number'"
+  },
+  {
+    "name": "com.myspace.bignumber",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.bignumber'"
+  },
+  {
+    "name": "com.myspace.test1",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.test1'"
+  },
+  {
+    "name": "com.myspace.test2",
+    "type": "java.lang.String",
+    "description": "A description for 'com.myspace.test2'"
+  }
+]}

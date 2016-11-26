@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>error</title>
+<link   th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+<!-- 引入导航条 -->
+<div th:include="header :: header" >header</div>
+<!-- 导航结束 -->
+
+<!-- 主体内容开始 -->
+<h1>您访问的地址不存在</h1>
+<div  class="jumbotron">
+       <div style="border:5px solid red;width:1000px;height:600px;" class="container">           
+             <span>您访问的地址不存在</span>   
+      </div>     
+</div>
+<!-- 主体内容结束 -->
+
+<!-- 引入footer -->
+<div th:with="val=不存在" th:include="footer :: footer">footer</div>
+<!-- footer结束 -->
+
+<!-- js -->
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>demo1</title>
+<!-- css -->
+<link  th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
+<!-- bootstrap table css -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
+</head>
+<body>
+<!-- 引入导航条 -->
+<div th:with="location=table" th:include="header :: header">header</div>
+<!-- 导航结束 -->
+
+<!-- 主体内容 开始-->
+<h1 align="center">bootstrap table</h1>
+<table data-toggle="table" data-url="table/getPageTest.do" data-striped="true" data-side-pagination="server"
+       data-search="true" data-pagination="true">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">姓名</th>
+            <th data-field="sex">性别</th>
+            <th data-field="age">年龄</th>
+            <th data-field="occupation">职业</th>
+        </tr>
+    </thead>
+</table>
+ 
+<!-- 主体内容 结束-->    
+  
+<!-- 引入footer -->
+<div th:with="val=table1" th:include="footer :: footer">footer</div>
+<!-- footer结束 -->
+        
+<!-- js -->
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
+<!-- bootstrap table js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- Highcharts js -->
+<script type="text/javascript" th:src="@{Highcharts-5.0.2/code/highcharts.js}"></script>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

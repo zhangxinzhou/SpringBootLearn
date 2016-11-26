@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>header</title>
+</head>
+<!-- 这里似乎不需要css文件 ,甚至不需要其他的东西,只需要'导航开始'到'导航结束'的部分就可以-->
+<body>
+<!-- 导航开始 -->
+<div th:fragment="header">
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="container-fluid">
+    <div class="navbar-header">
+        <img th:src="@{img/cat.png}" width="50px" height="50px" align="left" alt="cat" />
+        <a class="navbar-brand" href="index.html">&nbsp;&nbsp;DARKCAT</a>
+    </div>   
+    <div>
+        <ul  class="nav navbar-nav">
+            <li class="" th:attrappend="class=(${location}=='home')?active"><a href="index.html"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
+            <li class="dropdown" th:attrappend="class=(${location}=='gh')?' active'"><!-- 直接在class后追加,所以注意加个空格 -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-list"></span>
+                    GITHUB <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">GITHUB简介</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">如何使用GITHUB</a></li>
+                    <li><a href="#">用GITHUB写BLOG</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" th:attrappend="class=(${location}=='hc')?' active'">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-list"></span>
+                    HIGHCHARTS <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">HIGHCHARTS简介</a></li>
+                    <li class="divider"></li>
+                    <li><a href="demo1.html">demo1</a></li>
+                    <li><a href="demo2.html">demo2</a></li>
+                    <li><a href="demo3.html">demo3</a></li>
+                    <li><a href="demo4.html">demo4</a></li>
+                    <li><a href="demo5.html">demo5</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">其他</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" th:attrappend="class=(${location}=='table')?' active'">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-list"></span>
+                    BOOTSTRAP TABLE <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="table1.html">table1</a></li>
+                    <li><a href="table2.html">table2</a></li>
+                </ul>
+            </li>
+            <li class="" th:attrappend="class=(${location}=='others')?active"><a href="#">OTHERS</a></li>            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" />
+            </div>
+              <button type="submit" class="btn btn-primary">Submit</button>      
+            </form>
+         </li>
+       </ul>
+    </div>
+	</div>
+</nav>
+</div>
+<!-- 导航结束 -->
+</body>
+</html>

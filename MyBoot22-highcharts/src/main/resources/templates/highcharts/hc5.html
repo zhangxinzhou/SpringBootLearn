@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>demo4</title>
+<!-- css -->
+<link  th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
+</head>
+<body>
+<!-- 引入导航条 -->
+<div th:with="location=hc" th:include="header :: header">header</div>
+<!-- 导航结束 -->
+
+<!-- 主体内容开始 -->
+<h1 align="center">demo5,从数据库获取数据</h1>
+<div class="jumbotron">     
+       <div style="border:5px solid red;width:1000px;height:600px;" class="container">         
+           <!-- highcharts内容 -->
+           <div id="hc" style="width:100%;height:100%;"></div>
+      </div>     
+</div>
+<!-- 主体内容结束 -->    
+ 
+<!-- 引入footer -->
+<div th:with="val=demo5" th:include="footer :: footer">footer</div>
+<!-- footer结束 -->
+      
+<!-- js -->
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
+<!-- Highcharts js -->
+<script type="text/javascript" th:src="@{Highcharts-5.0.2/code/highcharts.js}"></script>
+
+<script type="text/javascript" th:inline="javascript">
+//这里看起来很简单是因为复杂的工作在service和实体类中完成了,但这样非常不灵活(比如要加个属性的时候很麻烦)
+$(function(){
+  var data=[[${hc}]];                                               //js中访问Thtmeleaf model中的值
+  var chart=$("#hc").highcharts({
+	  title: {
+          text: '职业比例'
+      },
+      series: [{
+          type: 'pie',
+          name: '数量:',
+          data: data
+          //json数据要类似如下格式
+          /* data:[
+        	  {name:'你好啊',y:10},
+        	  {name:'你好',y:20},
+        	  {name:'你',y:30},
+          ] */
+      }]
+  });	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>demo2</title>
+<!-- css -->
+<link  th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
+</head>
+<body>
+<!-- 引入导航条 -->
+<div th:with="location=hc" th:include="header :: header">header</div>
+<!-- 导航结束 -->
+
+<!-- 主体内容开始 -->
+<h1 align="center">demo2,ajax请求内存数据</h1>
+<div class="jumbotron">
+       <div style="border:5px solid red;width:1000px;height:600px;" class="container">         
+           <!-- highcharts内容 -->
+           <div id="hc" style="width:100%;height:100%;"></div>
+      </div>     
+</div>
+<!-- 主体内容结束 -->    
+    
+<!-- 引入footer -->
+<div th:with="val=demo2" th:include="footer :: footer">footer</div>
+<!-- footer结束 -->    
+    
+<!-- js -->
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
+<!-- Highcharts js -->
+<script type="text/javascript" th:src="@{Highcharts-5.0.2/code/highcharts.js}"></script>
+
+<script type="text/javascript">
+$(function(){
+   $.ajax({
+	   type:"get",
+	   url:"demo2/getAjaxData.do",
+	   dataType:"json",
+	   success:function(data){
+		   console.log(data);
+		   hc(data);
+	   }
+   });
+});
+function hc(data){
+	  var chart=$("#hc").highcharts({
+			chart:{type:"column"},                                       //类型:柱形图
+			exporting:{enable:false},                                    //导出按钮
+			title:data.title,                               //标题:水果
+			subtitle:{text:null},                                       //副标题
+			xAxis:data.xAxis,                   //x轴显示坐标内容
+			yAxis:{
+				title:{text:"个"},                                      //y轴单位
+			},
+			legend: {                                                  //图例(右上角显示内容)
+	            align: 'right',
+	            verticalAlign: 'top',
+	            x: 0,
+	            y: 0
+	       },
+	       credits: {                                                  //版权信息
+	           enabled: false
+	       },
+	       series: data.series
+	  });	
+}
+</script>
+</body>
+</html>

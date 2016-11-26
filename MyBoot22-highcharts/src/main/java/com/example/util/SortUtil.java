@@ -1,6 +1,6 @@
 package com.example.util;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
@@ -10,21 +10,20 @@ public class SortUtil {
 	
 	public static Sort getPage(String ... str){
 		Direction d=null;
-		List<String> l=Arrays.asList(str);
+		List<String> l=new ArrayList<>();
 		if(str!=null&&str.length>0){
-			for (String s : l) {
-				if(s.equalsIgnoreCase("asc")){
-					d=Direction.ASC;
-					l.remove(s);
-					break;
-				}else if(s.equalsIgnoreCase("desc")){
-					d=Direction.DESC;
-					l.remove(s);
-					break;
+			for (String s : str) {
+				if(s.equalsIgnoreCase("asc")||s.equalsIgnoreCase("desc")){
+					d=Direction.valueOf(s.toUpperCase());
+				}else{
+					l.add(s);
 				}
 			}
 		}
-		Sort p=new Sort(d!=null?d:Direction.ASC, l);
+		d=d==null?Direction.ASC:d;
+		Sort p=new Sort(d, l);
+		System.out.println(d);
+		System.out.println(l);
 		return p;
 	}
 }

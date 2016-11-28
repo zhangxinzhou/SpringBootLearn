@@ -61,4 +61,25 @@ public class TableController {
 	public MyPage<Users> getConditionPage(Users u,Integer offset,Integer limit,String... order){
 		return userService.getConditionPage(u, offset, limit, order);
 	}
+	
+	@RequestMapping("/table/saveUser.do")
+	@ResponseBody
+	public Users saveUser(Users u){
+		//添加和更新都是这个方法,id如果已经存在则是更新,否则添加
+		return userRepository.save(u);
+	}
+	
+	@RequestMapping("/table/delUser.do")
+	@ResponseBody
+	public boolean delUser(Long id){
+		try {
+			userRepository.delete(id);
+			return true;//删除成功
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;//删除失败,不存在该用户或者其他的异常
+	}
+	
+	
 }

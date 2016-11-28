@@ -21,9 +21,10 @@ public class SortUtil {
 			}
 		}
 		d=d==null?Direction.ASC:d;
-		Sort p=new Sort(d, l);
-		System.out.println(d);
-		System.out.println(l);
-		return p;
+		if(l!=null&&l.size()>0){
+			return new Sort(d, l);
+		}else{
+			return null;
+		}
 	}
 }

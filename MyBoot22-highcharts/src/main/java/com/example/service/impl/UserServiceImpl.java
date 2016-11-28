@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
 	public MyPage<Users> getConditionPage(Users u, Integer offset, Integer limit,String... order) {
 		Example<Users> e=Example.of(u);
 		Sort sort=SortUtil.getPage(order);
-		PageRequest pageRequest= new PageRequest(offset/limit, limit, sort);
+		PageRequest pageRequest=sort!=null?new PageRequest(offset/limit, limit, sort):new PageRequest(offset/limit, limit);
 		Page<Users> pageU=userRepository.findAll(e, pageRequest);
 		return new MyPage<>(pageU);
 	}

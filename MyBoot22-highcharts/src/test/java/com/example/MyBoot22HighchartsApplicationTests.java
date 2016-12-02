@@ -12,16 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.example.dao.UserRepository;
 import com.example.domain.Users;
 import com.example.service.HighChartsService;
-import com.example.service.UserService;
+import com.example.util.MyPageUtil;
+
+
+
+
 
 
 @RunWith(SpringRunner.class)
@@ -43,7 +45,7 @@ public class MyBoot22HighchartsApplicationTests {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private UserService userService;
+	private MyPageUtil<Users> mpu;
 	
 	//@Test
 	public void contextLoads() {
@@ -72,22 +74,39 @@ public class MyBoot22HighchartsApplicationTests {
 	}
 	
 	//复杂条件分页查询(这里只考虑单表查询),jpa真的很方便
+	//
 	//@Test
 	public void testComplexFind(){
+		String str="10";
+		Users u=new Users();
+		u.setOccupation(str);
+		//u.setSex("男");
+		ExampleMatcher matcher=ExampleMatcher.matching().withStringMatcher(StringMatcher.CONTAINING).withIgnoreCase();
+		Example<Users> e=Example.of(u,matcher);
+		List<Users> lu=userRepository.findAll(e);
+		log.info("******************************************************");
+		log.info(lu);
+		log.info("******************************************************");
+		
+	}
+	
+	//@Test
+	public void testComplexFind2(){
+		log.info("******************************************************");
+		log.info(mpu.getPage("", "name", "asc", 0, 10));
+		log.info("******************************************************");
+	}
+
+	@Test
+	public void testComplexFind3(){
 		Users u=new Users();
 		u.setSex("男");
-		Example<Users> e=Example.of(u);
-		Page<Users> pageU= userRepository.findAll(e,new PageRequest(0, 10,Direction.DESC,"id","name"));//第一页,每页10条,id降序
 		log.info("******************************************************");
-		log.info(pageU.getContent());
+		log.info(mpu.getPage(u, "name",  "asc", 0, 10));
 		log.info("******************************************************");
 	}
 	
-	//测试上述封装的方法
-	@Test
-	public void testComplexFind2(){
-		Users u=new Users();
-		u.setSex("男");
-		log.info(userService.getConditionPage(u, 0, 10, "age","name"));
-	}
+	
+
+
 }

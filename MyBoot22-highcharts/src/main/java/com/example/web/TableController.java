@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dao.UserRepository;
 import com.example.domain.Users;
-import com.example.service.UserService;
 import com.example.util.MyPage;
+import com.example.util.MyPageUtil;
 
 @Controller
 public class TableController {
 
 	@Autowired
 	private UserRepository userRepository;
+
 	@Autowired
-	private UserService userService;
-	
+	private MyPageUtil<Users> mpu;
 	
 	@RequestMapping("/table1")
 	public String table1(){
@@ -58,8 +58,8 @@ public class TableController {
 	
 	@RequestMapping("/table/getConditionPage.do")
 	@ResponseBody
-	public MyPage<Users> getConditionPage(Users u,Integer offset,Integer limit,String... order){
-		return userService.getConditionPage(u, offset, limit, order);
+	public MyPage<Users> getConditionPage(String search,String sort,String order,Integer offset,Integer limit,String filter){
+		return mpu.getPage(search, sort, order, offset, limit,filter);
 	}
 	
 	@RequestMapping("/table/saveUser.do")

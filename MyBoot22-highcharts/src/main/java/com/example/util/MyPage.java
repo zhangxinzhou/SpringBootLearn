@@ -12,12 +12,10 @@ public class MyPage<T>{
 	public MyPage() {
 		super();
 	}
-	
-	
-	public MyPage(List<T> rows, Long total) {
+		
+	public MyPage(List<T> rows) {
 		super();
 		this.rows = rows;
-		this.total = total;
 	}
 
 	public MyPage(Page<T> p) {

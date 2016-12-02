@@ -2,9 +2,11 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>demo1</title>
+<title>table2</title>
 <!-- css -->
-<link  th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
+<link rel="stylesheet" th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}"  /> 
+<!-- bootstrap table css -->
+<link rel="stylesheet" th:href="@{bootstrap-table-master/dist/bootstrap-table.min.css}" />
 </head>
 <body>
 <!-- 引入导航条 -->
@@ -12,27 +14,52 @@
 <!-- 导航结束 -->
 
 <!-- 主体内容 开始-->
-<h1 align="center"></h1>
-<div  class="jumbotron">
-       <div style="border:5px solid red;width:1000px;height:600px;" class="container">          
-          <!-- highcharts内容 -->
-          abc
-      </div>     
-</div>
+<form class="form-horizontal" role="form">
+    <div class="form-group has-success has-feedback">
+        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="inputEmail3" placeholder="请输入您的邮箱地址" 
+             required="required" autofocus="autofocus" />
+             <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="请输入您的邮箱密码" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" />记住密码
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">进入邮箱</button>
+        </div>
+    </div>
+</form>
+
+
+ 
 <!-- 主体内容 结束-->    
-  
 <!-- 引入footer -->
-<div th:with="val=table1" th:include="footer :: footer">footer</div>
+<div th:with="val=table2" th:include="footer :: footer">footer</div>
 <!-- footer结束 -->
         
 <!-- js -->
 <script th:src="@{js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
-<!-- Highcharts js -->
-<script type="text/javascript" th:src="@{Highcharts-5.0.2/code/highcharts.js}"></script>
+<!-- bootstrap table js -->
+<script th:src="@{bootstrap-table-master/dist/bootstrap-table.min.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/extensions/export/bootstrap-table-export.min.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/tableExport.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js}"></script>
 
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

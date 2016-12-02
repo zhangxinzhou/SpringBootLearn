@@ -6,7 +6,7 @@
 <!-- css -->
 <link  th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
 <!-- bootstrap table css -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
+<link rel="stylesheet" th:href="@{bootstrap-table-master/dist/bootstrap-table.min.css}" />
 </head>
 <body>
 <!-- 引入导航条 -->
@@ -15,19 +15,61 @@
 
 <!-- 主体内容 开始-->
 <h1 align="center">bootstrap table</h1>
-<table data-toggle="table" data-url="table/getConditionPage.do" data-striped="true" data-side-pagination="server"
-       data-search="true" data-pagination="true">
+<table id="table"
+       data-toggle="table" 
+       data-url="/table/getConditionPage.do" 
+       data-striped="true" 
+       data-side-pagination="server"
+       data-pagination="true" 
+       data-show-footer="true"
+       data-show-columns="true" 
+       data-show-refresh="true" 
+       data-show-toggle="true" 
+       data-show-pagination-switch="true"
+       data-id-field="id"
+       data-click-to-select="true"
+       data-select-item-name="myRadioName"
+       data-filter-control="true"
+       data-filter-show-clear="true"
+       data-show-export="true"
+       data-toolbar="#toolbar"
+       >
     <thead>
+        <tr>         
+            <th data-field="state" data-radio="true" data-rowspan="2"></th>
+            <th data-formatter="indexNum" data-rowspan="2" data-title="Index"></th>
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="id" data-title="ID" data-title-tooltip="这是id" data-rowspan="2"></th>
+            <th data-align="center" data-width="75%" data-title="详细内容" data-title-tooltip="这是详细内容" data-colspan="6"></th>
+        </tr>
         <tr>
-            <th data-field="id">ID</th>
-            <th data-field="name">姓名</th>
-            <th data-field="sex">性别</th>
-            <th data-field="age">年龄</th>
-            <th data-field="occupation">职业</th>
+            
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="name" data-title="姓名" data-title-tooltip="这是姓名" data-filter-control="input"></th>
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="sex" data-title="性别" data-title-tooltip="这是性别" data-filter-control="select"></th>
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="age" data-title="年龄" data-title-tooltip="这是年龄" data-filter-control="select"></th>
+            <th data-align="center" data-width="10%" data-sortable="true" data-field="occupation" data-title="职业" data-title-tooltip="这是职业" data-filter-control="select"></th>
+            <th data-align="center" data-width="5%" data-field="ads" data-title="测试undefined" data-title-tooltip="这是测试"></th>
         </tr>
     </thead>
 </table>
+
  
+<div id="toolbar" class="btn-group">
+    <button type="button" class="btn btn-default" onclick="add();">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+    <button type="button" class="btn btn-default" onclick="del();">
+        <i class="glyphicon glyphicon-minus"></i>
+    </button>
+    <button type="button" class="btn btn-default" onclick="edit();">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
+    <button type="button" class="btn btn-default">
+        <i class="glyphicon glyphicon-time"><span id="msg" style="color:red"></span></i>
+    </button>   
+</div> 
+
+ 
+
 <!-- 主体内容 结束-->    
   
 <!-- 引入footer -->
@@ -38,13 +80,49 @@
 <script th:src="@{js/jquery-3.1.1.min.js}"></script>
 <script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
 <!-- bootstrap table js -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
-<!-- Highcharts js -->
-<script type="text/javascript" th:src="@{Highcharts-5.0.2/code/highcharts.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/bootstrap-table.min.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/extensions/export/bootstrap-table-export.min.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/tableExport.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/extensions/filter-control/bootstrap-table-filter-control.min.js}"></script>
+<script th:src="@{bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js}"></script>
 
 <script type="text/javascript">
+function add(){//增加
+	alert("you click add");
+}
+function edit(){//编辑
+	alert("you click edit");
+}
+function save(row){//保存数据
+	$.ajax({
+		type:"post",
+		url:"/table/saveUser.do",
+		data:row,
+		dataType:"json",
+		success:function(data){
+			console.log(data);
+		}
+	});
+}
+function del(){//删除
+	alert("you click del");
+}
+function indexNum(value, row, index){
+	return index+1;
+}
 
+$(function(){
+	var start;
+	$('#table').on('click-row.bs.table', function (element, row, field) {
+	    //console.log(row);
+	}).on('post-header.bs.table',function(element){
+		start=element.timeStamp;  //也可以使用pre-body.bs.table,不过意思差别很大
+	}).on('load-success.bs.table',function(element, rows){
+		var msg=" "+(element.timeStamp-start)+"ms";
+		$("#msg").text(msg);
+		//console.log(msg);		
+	});
+});
 </script>
 </body>
 </html>

@@ -27,6 +27,16 @@ public class TableController {
 	@Autowired
 	private MyPageUtil<Users> mpu;
 	
+	@RequestMapping("/bt")
+	public String bt(){
+		return "table/bt";
+	}
+	
+	@RequestMapping("/bt0")
+	public String bt0(){
+		return "table/bt0";
+	}
+	
 	@RequestMapping("/table1")
 	public String table1(){
 		return "table/table1";
@@ -61,6 +71,14 @@ public class TableController {
 	public MyPage<Users> getConditionPage(String search,String sort,String order,Integer offset,Integer limit,String filter){
 		return mpu.getPage(search, sort, order, offset, limit,filter);
 	}
+	
+	//返回所有的users,让前端分页
+	@RequestMapping("/table/getAllUsers.do")
+	@ResponseBody
+	public List<Users> getAllUsers(){
+		return userRepository.findAll();
+	}
+	
 	
 	@RequestMapping("/table/saveUser.do")
 	@ResponseBody

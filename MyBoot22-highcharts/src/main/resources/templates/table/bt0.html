@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>HOME</title>
+<title>bt others</title>
     <!-- 使用Bootstrap必须导入至少3个文件(顺序最好这样)
          1.Bootstrap 核心 CSS 文件
                                  可选的Bootstrap主题文件:bootstrap-theme.min.css(可选)
@@ -15,20 +15,20 @@
 <!-- 引入导航条 -->
 <!-- 一个标签内可以包含多个th:x属性，其先后顺序为：
 include,each,if/unless/switch/case,with,attr/attrprepend/attrappend,value/href,src ,etc,text/utext,fragment,remove -->
-<div th:with="location=home" th:include="header :: header" >header</div>
+<div th:with="location=table" th:include="header :: header" >header</div>
 <!-- 导航结束 -->
 
 <!-- 主体内容开始 -->
-<h1 align="center">TITLE</h1>
+<h1 align="center">其他</h1>
 <div  class="jumbotron">
        <div style="border:5px solid red;width:1000px;height:600px;" class="container">           
-             <span>首页内容</span>   
+             <span>其他</span>   
       </div>     
 </div>
 <!-- 主体内容结束 -->
 
 <!-- 引入footer -->
-<div th:with="val=HOME" th:include="footer :: footer">footer</div>
+<div th:with="val=others" th:include="footer :: footer">footer</div>
 <!-- footer结束 -->
 
 <!-- js -->

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>bt</title>
+    <!-- 使用Bootstrap必须导入至少3个文件(顺序最好这样)
+         1.Bootstrap 核心 CSS 文件
+                                 可选的Bootstrap主题文件:bootstrap-theme.min.css(可选)
+         2.jQuery文件。务必在bootstrap.min.js 之前引入
+         3.Bootstrap 核心 JavaScript 文件                        
+     -->
+	<link th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" />  
+</head>
+<body>
+<!-- 引入导航条 -->
+<!-- 一个标签内可以包含多个th:x属性，其先后顺序为：
+include,each,if/unless/switch/case,with,attr/attrprepend/attrappend,value/href,src ,etc,text/utext,fragment,remove -->
+<div th:with="location=table" th:include="header :: header" >header</div>
+<!-- 导航结束 -->
+
+<!-- 主体内容开始 -->
+<h1 align="center">BT简介</h1>
+<div  class="jumbotron">
+       <div style="border:0px solid red;width:1000px;height:600px;" class="container"> 
+       <h2>Bootstrap-Table:</h2>          
+       <p class="lead">基于 Bootstrap 的 jQuery 表格插件，通过简单的设置，就可以拥有强大的单选、多选、排序、分页，以及编辑、导出、过滤（扩展）等等的功能。</p> 
+       <h2>官网:</h2>
+       <p class="lead">中文官网:<a href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/" class="btn btn-primary btn-lg" role="button" target="_blank">bootstrap-table.wenzhixin.net.cn/zh-cn</a></p>
+       <p class="lead">英文官网:<a href="http://bootstrap-table.wenzhixin.net.cn/" class="btn btn-primary btn-lg" role="button" target="_blank">bootstrap-table.wenzhixin.net.cn</a></p>
+       <p class="lead">如何开始:<a href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/getting-started/" class="btn btn-primary btn-lg" role="button" target="_blank">开始使用</a></p>
+       <p class="lead">文档资料:<a href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/" class="btn btn-primary btn-lg" role="button" target="_blank">参考资料</a></p>
+       <p class="lead">参考案例:<a href="http://bootstrap-table.wenzhixin.net.cn/zh-cn/examples/" class="btn btn-primary btn-lg" role="button" target="_blank">参考案例(有源码)</a></p>
+       <p class="lead">GITHUB:<a href="https://github.com/wenzhixin/bootstrap-table" class="btn btn-primary btn-lg" role="button" target="_blank">git地址</a></p>
+      </div>     
+</div>
+<!-- 主体内容结束 -->
+
+<!-- 引入footer -->
+<div th:with="val=bt" th:include="footer :: footer">footer</div>
+<!-- footer结束 -->
+
+<!-- js -->
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -2,9 +2,9 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>table2</title>
+<title>demo1</title>
 <!-- css -->
-<link rel="stylesheet" th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}"  /> 
+<link  th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
 <!-- bootstrap table css -->
 <link rel="stylesheet" th:href="@{bootstrap-table-master/dist/bootstrap-table.min.css}" />
 </head>
@@ -14,42 +14,117 @@
 <!-- 导航结束 -->
 
 <!-- 主体内容 开始-->
-<form class="form-horizontal" role="form">
-    <div class="form-group has-success has-feedback">
-        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" id="inputEmail3" placeholder="请输入您的邮箱地址" 
-             required="required" autofocus="autofocus" />
-             <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="请输入您的邮箱密码" />
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" />记住密码
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">进入邮箱</button>
-        </div>
-    </div>
-</form>
-
+<h1 align="center">bootstrap table</h1>
+<table id="table"
+       data-toggle="table" 
+       data-url="/table/getAllUsers.do" 
+       data-striped="true" 
+       data-side-pagination="client"
+       data-pagination="true"
+       data-search="true" 
+       data-show-footer="true"
+       data-show-columns="true" 
+       data-show-refresh="true" 
+       data-show-toggle="true" 
+       data-show-pagination-switch="true"
+       data-id-field="id"
+       data-click-to-select="true"
+       data-select-item-name="myRadioName"
+       data-show-export="true"
+       data-toolbar="#toolbar"
+       >
+    <thead>
+        <tr>         
+            <th data-field="state" data-radio="true" data-rowspan="2"></th>
+            <th data-formatter="indexNum" data-rowspan="2" data-title="Index"></th>
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="id" data-title="ID" data-title-tooltip="这是id" data-rowspan="2"></th>
+            <th data-align="center" data-width="75%" data-title="详细内容" data-title-tooltip="这是详细内容" data-colspan="6"></th>
+        </tr>
+        <tr>
+            
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="name" data-title="姓名" data-title-tooltip="这是姓名" ></th>
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="sex" data-title="性别" data-title-tooltip="这是性别"></th>
+            <th data-align="center" data-width="20%" data-sortable="true" data-field="age" data-title="年龄" data-title-tooltip="这是年龄"></th>
+            <th data-align="center" data-width="10%" data-sortable="true" data-field="occupation" data-title="职业" data-title-tooltip="这是职业"></th>
+        </tr>
+    </thead>
+</table>
 
  
+<div id="toolbar" class="btn-group">
+    <button type="button" class="btn btn-default" onclick="add();">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+    <button type="button" class="btn btn-default" onclick="del();">
+        <i class="glyphicon glyphicon-minus"></i>
+    </button>
+    <button type="button" class="btn btn-default" onclick="edit();">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </button>
+    <button type="button" class="btn btn-default">
+        <i class="glyphicon glyphicon-time"><span id="msg" style="color:red"></span></i>
+    </button>   
+</div> 
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">添加</h4>
+            </div>       
+            <div class="modal-body">  
+            <form id="form_data" class="form-horizontal" role="form" action="/table/saveUser.do" method="post">
+                      <div class="form-group">
+                        <label for="id" class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                        <input class="form-control" id="id" name="id" type="text" readonly="readonly" placeholder="无需填写"/>
+                        </div>
+                      </div>                  
+                      <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="请输入姓名" />
+                        </div>
+                      </div> 
+                      <div class="form-group">
+                        <label for="sex" class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                        <select id="sex" name="sex" class="form-control" data-size="5">
+                              <option value="男" selected="selected">男</option>
+                              <option value="女">女</option>
+                        </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="age" class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                        <input class="form-control" id="age" name="age" type="number" placeholder="请输入年龄"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="occupation" class="col-sm-2 control-label">职业</label>
+                        <div class="col-sm-10">
+                        <input class="form-control" id="occupation" name="occupation" type="text" placeholder="请输入职业"/>
+                        </div>
+                      </div>   
+            </form>             
+            </div>          
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" onclick="save();">提交更改</button>                
+            </div>      
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+ 
+
 <!-- 主体内容 结束-->    
+  
 <!-- 引入footer -->
-<div th:with="val=table2" th:include="footer :: footer">footer</div>
+<div th:with="val=table1" th:include="footer :: footer">footer</div>
 <!-- footer结束 -->
         
 <!-- js -->
@@ -61,5 +136,75 @@
 <script th:src="@{bootstrap-table-master/dist/tableExport.js}"></script>
 <script th:src="@{bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js}"></script>
 
+<script type="text/javascript">
+function add(){//增加(弹出表单并清空表单内容)
+	$("#form_data")[0].reset();
+	$("#myModal").modal("show");
+}
+function edit(){//编辑(弹出表单,并将选择列赋值给表单)
+	var rows=$("#table").bootstrapTable("getSelections");
+	var row=rows[0];//取出来的是数组,只要第一个 
+	if(row){//如果有数据给表单赋值
+		$("#myModal").modal("show");
+		for(var key in row){
+			$("#"+key).val(row[key]);
+		}
+	}else{
+		console.log("请选择一条数据先");
+	}	
+}
+function save(){//保存数据	
+	$("#myModal").modal("hide");
+	var form_data = $("#form_data").serialize();
+	var form_url=$("#form_data").attr("action");
+	$.ajax({
+		type:"post",
+		url:form_url,
+		data:form_data,
+		success:function(data){
+			if(data!=null){
+				$("#table").bootstrapTable("refresh");
+			}else{
+				alert("保存失败");
+			}
+		}
+	});	
+}
+function del(){//删除(和编辑类似,取id,然后调用ajax方法删除)
+	rows=$("#table").bootstrapTable("getSelections");
+	var row=rows[0];//取出来的是数组,只要第一个
+	if(row){
+		var params={id:row.id};
+		$.ajax({
+			type:"post",
+			url:"/table/delUser.do",
+			data:params,
+			success:function(data){
+				if(data){
+					$("#table").bootstrapTable("refresh");
+				}else{
+					alert("删除失败");
+				}
+			}
+		});
+	}else{
+		console.log("请选择一条数据先");
+	}
+}
+function indexNum(value, row, index){
+	return index+1;
+}
+$(function(){
+	var start;
+	$('#table').on('click-row.bs.table', function (element, row, field) {
+	    //console.log(row);
+	}).on('post-header.bs.table',function(element){
+		start=element.timeStamp;                          //也可以使用pre-body.bs.table,不过意思差别很大
+	}).on('load-success.bs.table',function(element, rows){
+		var msg=" "+(element.timeStamp-start)+"ms";
+		$("#msg").text(msg);	
+	});
+});
+</script>
 </body>
 </html>

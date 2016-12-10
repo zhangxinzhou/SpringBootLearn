@@ -19,6 +19,17 @@ public class HighChartsController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	
+	@RequestMapping("/hc")
+	public String hc(){
+		return "highcharts/hc";
+	}
+	
+	@RequestMapping("/hc0")
+	public String hc0(){
+		return "highcharts/hc0";
+	}
+	
 	@RequestMapping("/demo1")
 	public String demo1(){
 		return "highcharts/hc1";

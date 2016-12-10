@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>hc</title>
+    <!-- 使用Bootstrap必须导入至少3个文件(顺序最好这样)
+         1.Bootstrap 核心 CSS 文件
+                                 可选的Bootstrap主题文件:bootstrap-theme.min.css(可选)
+         2.jQuery文件。务必在bootstrap.min.js 之前引入
+         3.Bootstrap 核心 JavaScript 文件                        
+     -->
+	<link th:href="@{bootstrap-3.3.0-dist/dist/css/bootstrap.min.css}" rel="stylesheet" /> 
+</head>
+<body>
+<!-- 引入导航条 -->
+<!-- 一个标签内可以包含多个th:x属性，其先后顺序为：
+include,each,if/unless/switch/case,with,attr/attrprepend/attrappend,value/href,src ,etc,text/utext,fragment,remove -->
+<div th:with="location=hc" th:include="header :: header" >header</div>
+<!-- 导航结束 -->
+
+<!-- 主体内容开始 -->
+<h1 align="center">HIGHCHARTS简介</h1>
+<div  class="jumbotron">
+       <div style="border:0px solid red;width:1000px;height:600px;" class="container"> 
+       <h2>highcharts:</h2>          
+       <p class="lead">Highcharts 是一个用纯JavaScript编写的一个图表库， 能够很简单便捷的在web网站或是web应用程序添加有交互性的图表，并且免费提供给个人学习、个人网站和非商业用途使用。HighCharts支持的图表类型有曲线图、区域图、柱状图、饼状图、散状点图和综合图表。</p> 
+       <h2>简介:</h2> 
+       <p class="lead">HighCharts界面美观，由于使用JavaScript编写，所以不需要像Flash和Java那样需要插件才可以运行，而且运行速度快。另外HighCharts还有很好的兼容性，能够完美支持当前大多数浏览器。</p>
+       <h2>官网:</h2>
+       <p class="lead">英文官网:<a href="http://www.highcharts.com/" class="btn btn-primary btn-lg" role="button" target="_blank">www.highcharts.com</a></p>
+       <p class="lead">中文官网:<a href="http://www.hcharts.cn/" class="btn btn-primary btn-lg" role="button" target="_blank">www.hcharts.cn</a></p>
+       <p class="lead">其他资料:<a href="http://blog.csdn.net/wocaonima123987/article/details/8198673" class="btn btn-primary btn-lg" role="button" target="_blank">参考资料</a></p>
+      </div>     
+</div>
+
+
+<!-- 主体内容结束 -->
+
+<!-- 引入footer -->
+<div th:with="val=highcharts" th:include="footer :: footer">footer</div>
+<!-- footer结束 -->
+
+<!-- js -->
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{bootstrap-3.3.0-dist/dist/js/bootstrap.min.js}"></script>
+</body>
+</html>

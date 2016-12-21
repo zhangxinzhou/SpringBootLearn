@@ -1,7 +1,6 @@
 package com.example;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,6 +15,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.domain.Student;
 
+/**
+ * jap能调用的存储过程有两种:
+ *    1.调用无返回值的存储过程
+ *    2.返回值为ResultSet（以select 形式返回的值）的存储过程(注意：EJB3不能调用以OUT参数返回值的存储过程,请使用jdbc的方式)。
+ * @author user
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JpaTest {
@@ -41,60 +47,42 @@ public class JpaTest {
 	//@Test
 	public void JpaTest3(){
 		EntityManager temp=emf.createEntityManager();
-		log.info(em==temp);//不相等,但用emf创建的em和注入的em功能应该是一样的
+		log.info(em==temp);//虽然不相等,但用emf创建的em和注入的em功能应该是一样的
 	}
 	
 	@Test
-	public void JpaProcedureTest01(){//不带参数的存错过程
-		String sql="{call pro_test4}";
-		@SuppressWarnings("unchecked")		
-		List<Student> stulist=em.createNativeQuery(sql,Student.class).getResultList();
-		for (Student stu : stulist) {
-			log.info(stu);
-		}
-		em.close();
-	}
-	
-	@Test
-	public void JpaProcedureTest02(){//带参数的存错过程
-		String sql="{call pro_test5(?,?)}";	
+	public void JpaProcedureTest01(){
+		String sql="{call pro_selectfromtable(?)}";
 		Query query=em.createNativeQuery(sql,Student.class);
-		query.setParameter(1, 2);
-		query.setParameter(2, "男");
-		@SuppressWarnings("unchecked")
+		query.setParameter(1, "男");
+		@SuppressWarnings("unchecked")		
 		List<Student> stulist=query.getResultList();
 		for (Student stu : stulist) {
-			log.info(stu);
+			log.info("JpaProcedureTest01:"+stu);
 		}
 		em.close();
 	}
 	
-	@Test
-	public void JpaProcedureTest03(){//带参数的存错过程,和test02差不多
-		String sql="{call pro_test5(?,?)}";	
-		Query query=em.createNativeQuery(sql,Student.class);
-		query.setParameter(1, 2);
-		query.setParameter(2, "男");
-		@SuppressWarnings("unchecked")
-		List<Map<String, Object>>  map=query.getResultList();//差不多
-		log.info(map);
-		em.close();
-	}
-	
-	@Test
-	public void JpaProcedureTest04(){//a+b=c
-		String sql="{call pro_test6(?,?)}";	
+	@Test  //我想返回一个list<map<String,object>>的泛用型存储过程,但这个似乎行不通
+	public void JpaProcedureTest02(){
+		String sql="{call pro_selectfromtable(?)}";	
 		Query query=em.createNativeQuery(sql);
-		query.setParameter(1, 2);
-		query.setParameter(2, 5);
-		int result=(int)query.getSingleResult();
-		log.info(result);
+		query.setParameter(1, "男");		
+		List<?> list=query.getResultList();
+		log.info("JpaProcedureTest02:"+list);
 		em.close();
 	}
 	
-/**
- * 暂时没有找到jap调用call pro_abc(@a,@b,@c output),和在存储过程中通过return 返回返回值的方法,
- * 目前发现能用的只有在存储过程中select * from table来返回结果的方法
- */
+	
+	@Test
+	public void JpaProcedureTest03(){
+		String sql="{call pro_selectsingle(?)}";	
+		Query query=em.createNativeQuery(sql);
+		query.setParameter(1, "jpa");
+		String result=query.getSingleResult().toString();
+		log.info("JpaProcedureTest03:"+result);
+		em.close();
+	}
+	
 	
 }

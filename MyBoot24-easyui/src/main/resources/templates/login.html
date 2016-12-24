@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>login</title>
+
+<!-- easyui css -->
+<link rel="stylesheet" type="text/css" th:href="@{/jquery-easyui-1.5.1/themes/default/easyui.css}" /> 
+<link rel="stylesheet" type="text/css" th:href="@{/jquery-easyui-1.5.1/themes/icon.css}" /> 
+<link rel="stylesheet" type="text/css" th:href="@{/jquery-easyui-1.5.1/demo/demo.css}" /> 
+
+<!-- custom css -->
+<style type="text/css">
+body{background: #ffffff url(bgimage.gif) no-repeat fixed top;}  /* 设置背景 */
+.center{margin:16% auto;width:400px;height:275px;}  /* 左右垂直居中 */
+</style>
+
+</head>
+<body>
+<div class="center">
+    <div class="easyui-panel" title="用户登录" style="width:100%;max-width:400px;padding:30px 60px;">
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" style="width:100%;height:40px;padding:12px" data-options="prompt:'username',iconCls:'icon-man',iconWidth:38" />
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" type="password" style="width:100%;height:40px;padding:12px" data-options="prompt:'password',iconCls:'icon-lock',iconWidth:38" />
+        </div>
+        <div style="margin-bottom:20px">
+            <input type="checkbox" checked="checked" />
+            <span>Remember me</span>
+        </div>
+        <div>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="padding:5px 0px;width:100%;">
+                <span style="font-size:14px;">Login</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- easyui js -->
+<script th:src="@{/jquery-easyui-1.5.1/jquery.min.js}"></script>
+<script th:src="@{/jquery-easyui-1.5.1/jquery.easyui.min.js}"></script>
+</body>
+</html>

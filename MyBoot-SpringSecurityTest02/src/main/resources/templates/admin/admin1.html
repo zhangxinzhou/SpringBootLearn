@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+用户名:<span sec:authentication="name" >用户名</span><br/>
+用户名:<span sec:authentication="principal.username" >用户名</span><br/>
+enabled:<span sec:authentication="principal.enabled" >是否可用</span><br/>
+accountNonLocked:<span sec:authentication="principal.accountNonLocked" >是否锁定</span><br/>
+页面admin1,只有管理员才能访问
+</body>
+</html>

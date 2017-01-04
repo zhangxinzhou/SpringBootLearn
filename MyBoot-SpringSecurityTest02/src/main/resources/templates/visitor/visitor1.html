@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+hello,<span sec:authentication="name" >未登录用户(anonymousUser就是匿名用户或者游客)</span><br/>
+页面vistor1,未登录也能访问
+<img alt="测试图,是否被拦截" th:src="@{/test/miku.jpg}" />
+</body>
+</html>

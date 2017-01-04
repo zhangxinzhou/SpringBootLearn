@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+hello,<span th:text="${username}"></span>(直接从后台传递过来用户名)<br/>
+hello,<span th:text="${auth.name}"></span>(从Authentication中取出name就是用户名)<br/>
+页面admin2,只有管理员才能访问
+</body>
+</html>

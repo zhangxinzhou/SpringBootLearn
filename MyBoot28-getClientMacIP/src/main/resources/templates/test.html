@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>test</title>
+</head>
+<body>
+这是test,测试成功!
+	<table border="1">
+		<thead>
+			<tr>
+			    <td>序号</td>
+				<td>controller</td>
+				<td>package</td>
+				<td>classRM</td>
+				<td>classRB</td>
+				<td>method</td>
+				<td>params</td>
+				<td>return</td>
+				<td>methodRM</td>
+				<td>methodRB</td>
+				<td>uri</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="r,iterStat : ${result}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${r.cla}">controller</td>
+				<td th:text="${r.package}">package</td>
+				<td th:text="${r.claRM}">classRM</td>
+				<td th:text="${r.claRB}">classRB</td>
+				<td th:text="${r.method}">method</td>
+				<td th:text="${r.params}">params</td>
+				<td th:text="${r.return}">return</td>
+				<td th:text="${r.rm}">methodRM</td>
+				<td th:text="${r.rb}">methodRB</td>
+				<td>				     
+				      <span th:each="h,iterStat : ${r.href}">
+				          <a th:href="${h}" th:text="${h}"></a>
+				      </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

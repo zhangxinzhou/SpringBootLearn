@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>index</title>
+</head>
+<body>
+没错,这就是首页(经过验证,获取mac地址的方法,一个能打的都没有)<br/>
+	<table border="1">
+		<thead>
+			<tr>
+			    <td>序号</td>
+				<td>controller</td>
+				<td>method</td>
+				<td>desc</td>
+				<td>requestMapping</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="r,iterStat : ${result}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${r.cla}">controller</td>
+				<td th:text="${r.method}">method</td>
+				<td th:text="${r.desc}">desc</td>
+				<td><a th:href="${r.rm}" th:text="${r.rm}">requestMapping</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

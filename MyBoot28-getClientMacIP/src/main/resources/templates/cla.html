@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>test</title>
+</head>
+<body>
+点击controller,显示该controller的详细controller
+	<table border="1">
+		<thead>
+			<tr>
+			    <td>序号</td>
+			    <td>package</td>
+				<td>controller</td>			
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="r,iterStat : ${result}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${r.packageName}">package</td>			
+				<td><a th:href="'/getControllerByName?claName='+${r.className}" th:text="${r.className}"></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

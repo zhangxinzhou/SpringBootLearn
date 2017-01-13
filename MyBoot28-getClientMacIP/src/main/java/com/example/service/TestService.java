@@ -7,13 +7,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.util.ClassUtils;
 import com.example.util.Description;
 
 
@@ -106,6 +107,21 @@ public class TestService {
 			map.put("rb", methods[i].isAnnotationPresent(ResponseBody.class));
 			map.put("href", getURI(claRM, methodRM));
 			ml.add(map);
+		}
+		return ml;
+	}
+	
+	//根据包名获取包下所有的类名
+	public List<Map<String, Object>> getClassNamebyPackageName(String packageName){
+		List<Map<String, Object>> ml=new ArrayList<>();
+		Set<String> claNames=ClassUtils.getClassName(packageName, false);
+		if(claNames!=null){
+			for (String str : claNames) {
+				Map<String, Object> map=new HashMap<>();
+				map.put("packageName", packageName);
+				map.put("className", str);
+				ml.add(map);
+			}
 		}
 		return ml;
 	}

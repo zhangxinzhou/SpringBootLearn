@@ -61,6 +61,27 @@ public class WebController {
 		return "test";
 	}
 	
+	@Description("跳转到cla")
+	@RequestMapping("/toCla")
+	public String toCla(ModelMap mm){
+		String packageName="com.example.web";
+		mm.put("result", testService.getClassNamebyPackageName(packageName));
+		return "cla";
+	}
+	
+	@Description("根据controller的名称获取该controller")
+	@RequestMapping("/getControllerByName")
+	public String getControllerByName(ModelMap mm,String claName){
+		Class<?> cla;
+		try {
+			cla = Class.forName(claName);
+			mm.put("result", testService.getMoreRequestMapping2(cla));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}		
+		return "test";
+	}
+	
 	@Description("获取ip")
 	@RequestMapping("/getLocalIP")
 	@ResponseBody

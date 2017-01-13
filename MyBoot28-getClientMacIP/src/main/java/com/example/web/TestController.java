@@ -28,4 +28,12 @@ public class TestController {
 		return testService.getMoreRequestMapping2(WebController.class);
 	}
 	
+	
+	@RequestMapping("/TestGetCLassName")
+	@ResponseBody
+	public List<Map<String, Object>> TestGetCLassName(){
+		String packageName="com.example.web";
+		return testService.getClassNamebyPackageName(packageName);
+	}
+	
 }

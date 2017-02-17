@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.example.util.ClassUtils;
 import com.example.util.Description;
@@ -151,7 +153,7 @@ public class TestService {
 		return null;
 	}
 	
-	//如果能看源码的话,这个很简单吧...spring一定有这个功能
+	//如果能看源码的话,这个很简单吧...spring一定有这个功能,RequestMappingHandlerMapping可以满足需求
 	private List<String> getURI(RequestMapping claRM,RequestMapping methodRM){	
 		List<String> cla=getRM(claRM);
 		List<String> method=getRM(methodRM);

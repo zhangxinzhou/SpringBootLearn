@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>methods</title>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>所在包</td>
+				<td>所属类</td>
+				<td>是controller</td>
+				<td>方法名称</td>
+				<td>方法参数</td>
+				<td>方法返回值类型</td>
+				<td>方法说明</td>
+				<td>是否返回json类型</td>
+				<td>访问url</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="d,iterStat : ${data}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${d.package}">所在包</td>
+				<td th:text="${d.class}">所属类</td>
+				<td th:text="${d.isController?'是':'否'}">所属类</td>
+				<td th:text="${d.method}">方法名称</td>
+				<td th:text="${d.params}">方法参数</td>
+				<td th:text="${d.return}">方法返回值类型</td>
+				<td th:text="${d.note}">方法说明</td>
+				<td th:text="${d.isResponseBody?'是':'否'}">是否返回json类型</td>
+				<td>
+				      <a th:each="url,iterStat : ${d.urls}" th:href="${url}" th:text="${url}">访问url</a>
+                </td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

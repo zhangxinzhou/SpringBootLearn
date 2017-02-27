@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>classes</title>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>类名</td>
+				<td>点击名称查看详细的信息</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="d,iterStat : ${data}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${d}">类名</td>
+				<td><a th:href="'methods?classname='+${d}" th:text="${d}"></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

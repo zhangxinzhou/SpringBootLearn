@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<a th:href="@{http://blog.csdn.net/anhuidelinger/article/details/17024491}" th:text="@{查看原文}"></a>
+原文链接:<a th:href="@{http://blog.csdn.net/anhuidelinger/article/details/17024491}" th:text="@{http://blog.csdn.net/anhuidelinger/article/details/17024491}"></a>
+<ul>
+<li><button onclick="ale();"  title="弹出对话框并输出一段提示信息">弹窗1</button></li>
+<li><button onclick="firm();" title="弹出一个询问框，有确定和取消按钮">弹窗2</button></li>
+<li><button onclick="prom();" title="弹出一个输入框，输入一段文字，可以提交  ">弹窗3</button></li>
+</ul>
+<ol>
+<!-- 按钮提示框  -->
+<li><input type="button" name="btn1" id="btn1" value="删除" onclick="return confirm('Yes/No');" /> </li>
+<!-- 按钮提示框 -->
+<li><input type="button" name="btn2" id="btn2" value="提示" onclick="javaScript:alert('您确定要删除吗？');" /></li>
+<!-- 提交按钮  -->
+<li><input type="button" value="提交" onclick="javaScript:window.location.href='http://www.baidu.com';" /></li>
+<!-- 关闭按钮 --> 
+<li><input type="button" value="关闭" onclick="javaScript:window.close();" /></li>
+<!-- 返回并关闭连接 --> 
+<li><a href="#" onclick="javascript:;window.opener.location.reload();window.close()">返回并关闭</a></li>
+<!-- 返回当前页并刷新 -->
+<li><a href="#" onclick="javaScript:window.location.reload();">返回并刷新</a></li>
+<!-- 返回上一级页面 -->
+<li><input type="button" name="button" value="返回" onclick="javascript:history.go(-1)" /></li>
+</ol>
+
+<!-- javascript -->
+<script type="text/javascript">
+//====================== JS最常用三种弹出对话框 ========================  
+//弹出对话框并输出一段提示信息  
+function ale() {  
+    //弹出一个对话框  
+    alert("提示信息！");  
+}  
+//弹出一个询问框，有确定和取消按钮  
+function firm() {  
+    //利用对话框返回的值 （true 或者 false）  
+    if (confirm("你确定提交吗？")) {  
+        alert("点击了确定");  
+    }  
+    else {  
+        alert("点击了取消");  
+    }  
+}  
+//弹出一个输入框，输入一段文字，可以提交  
+function prom() {  
+    var name = prompt("请输入您的名字", ""); //将输入的内容赋给变量 name ，  
+    //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值  
+    if (name)//如果返回的有内容  
+    {  
+        alert("欢迎您：" + name)  
+    }  
+} 
+</script>
+</body>
+</html>

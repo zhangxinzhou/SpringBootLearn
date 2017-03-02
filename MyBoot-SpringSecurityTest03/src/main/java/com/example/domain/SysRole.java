@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
-
+/*
+ * 角色表
+ */
 @Entity
 public class SysRole implements GrantedAuthority{	
 

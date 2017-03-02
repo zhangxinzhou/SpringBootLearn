@@ -5,6 +5,10 @@
 <title>table</title>
 </head>
 <body>
+<a th:href="@{/}">首页</a>
+<a href="#" onclick="javascript:history.go(0)" >刷新</a>
+<a href="#" onclick="javascript:history.go(1)" >前进</a>
+<a href="#" onclick="javascript:history.go(-1)" >返回</a>
 <!-- tables.html是写死的,table.html是动态创建的,所以tables.html应该响应的速度更快 
      th:if="${iterStat.index==0}" 目的是为了只拿一行,然后遍历这行值的key,value,获取表头-->
 	<table border="1">

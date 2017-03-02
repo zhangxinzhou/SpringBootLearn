@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /*
+ * 教师
  * 一个老师可能教多个班级
  */
 @Entity

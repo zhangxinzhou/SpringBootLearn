@@ -5,6 +5,10 @@
 <title>packages</title>
 </head>
 <body>
+<a th:href="@{/}">首页</a>
+<a href="#" onclick="javascript:history.go(0)" >刷新</a>
+<a href="#" onclick="javascript:history.go(1)" >前进</a>
+<a href="#" onclick="javascript:history.go(-1)" >返回</a>
 	<table border="1">
 		<thead>
 			<tr>
@@ -28,5 +32,8 @@
 			</tr>
 		</tbody>
 	</table>
+<!-- js -->
+<script th:src="@{https://code.jquery.com/jquery-3.1.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/function.js}" type="text/javascript"></script>
 </body>
 </html>

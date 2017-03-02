@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 
 /*
+ * 学生
  * 一个学生只能属于一个班级
  */
 @Entity
@@ -19,6 +20,7 @@ public class Student {
 	private String sex;
 	private String birthday;
 	private String stuStatus;
+	
 	public Long getId() {
 		return id;
 	}

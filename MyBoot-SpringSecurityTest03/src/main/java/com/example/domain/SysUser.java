@@ -13,6 +13,9 @@ import javax.persistence.ManyToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/*
+ * 用户表
+ */
 @Entity
 public class SysUser implements UserDetails{
 

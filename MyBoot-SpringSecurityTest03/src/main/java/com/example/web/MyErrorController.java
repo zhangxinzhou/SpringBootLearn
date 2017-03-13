@@ -22,7 +22,7 @@ public class MyErrorController implements ErrorController{
 	         @Override        
 	         public void customize(ConfigurableEmbeddedServletContainer container) {
 	        	//ErrorPage(HttpStatus status, String path),path指的是@RequestMapping(value)中的值
-	        	//container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
+	        	container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
 	        	container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403"));
 	            container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500"));            	                    
 	        }    

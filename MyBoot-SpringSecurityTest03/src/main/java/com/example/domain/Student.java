@@ -3,11 +3,11 @@ package com.example.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 /*
  * 学生
- * 一个学生只能属于一个班级
  */
 @Entity
 public class Student {
@@ -20,6 +20,12 @@ public class Student {
 	private String sex;
 	private String birthday;
 	private String stuStatus;
+	
+	/*
+	 * 多个学生对应一个班级
+	 */
+	@ManyToOne
+	private Clazz clazz;
 	
 	public Long getId() {
 		return id;

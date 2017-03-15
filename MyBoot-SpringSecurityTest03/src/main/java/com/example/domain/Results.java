@@ -1,5 +1,10 @@
 package com.example.domain;
 
+/**
+ * 分数表,暂时不考虑
+ * @author user
+ *
+ */
 public class Results {
 
 	private Long id;

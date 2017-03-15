@@ -1,12 +1,14 @@
 package com.example.domain;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /*
  * 教师
- * 一个老师可能教多个班级
  */
 @Entity
 public class Teacher {
@@ -19,6 +21,13 @@ public class Teacher {
 	private String sex;
 	private String birthday;
 	private String tchStatus;
+	
+	/*
+	 * 一个老师教多个班级,一个班级有多个老师
+	 */
+	@ManyToMany
+	private Set<Clazz> clazzes;
+	
 	public Long getId() {
 		return id; 
 	}

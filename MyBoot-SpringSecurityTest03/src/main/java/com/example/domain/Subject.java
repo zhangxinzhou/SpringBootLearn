@@ -1,20 +1,18 @@
 package com.example.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
 
 /*
- * 科目
+ * 科目表,暂时不考虑
  */
-@Entity
 public class Subject {
 
-	@Id
-	@GeneratedValue
+
 	private Long id;
 	private String name;
 	private String remarks;
+	
+	
 	
 	public Long getId() {
 		return id;

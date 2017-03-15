@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,6 +60,9 @@ public class RedisLearnApplicationTests {
 		userRedisTemplate.opsForValue().set(user04.getName(), user04);
 		
 		User u= userRedisTemplate.opsForValue().get("小白");
+		userRedisTemplate.expire("小白", 10L, TimeUnit.SECONDS);//十秒后过期		
 		System.out.println(u);
 	}
+	
+	
 }

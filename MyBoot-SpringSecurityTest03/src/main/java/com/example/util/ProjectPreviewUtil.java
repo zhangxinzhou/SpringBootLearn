@@ -14,6 +14,12 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import com.example.anno.Notes;
 
+/**
+ * 未用到的类
+ * @author user
+ *
+ */
+
 @Notes(author="zxz",lastmodifier="zxz",date="2017-2-16",value="获取controller注解的信息")
 public class ProjectPreviewUtil { 
 	//获取参数名称(反射只能获取到参数的类型,参数的名称用arg0..来表示,无法获取参数的名称,所以要借助此类)

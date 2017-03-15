@@ -63,6 +63,11 @@ public class Student {
 	public void setStuStatus(String stuStatus) {
 		this.stuStatus = stuStatus;
 	}
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", stunum=" + stunum + ", sex=" + sex + ", birthday=" + birthday
+				+ ", stuStatus=" + stuStatus + ", clazz=" + clazz + "]";
+	}
 
 	
 

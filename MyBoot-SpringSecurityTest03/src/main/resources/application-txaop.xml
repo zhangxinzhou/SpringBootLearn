@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/tx   
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/aop     
+                        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+		    <tx:method name="Aop*" propagation="REQUIRED" isolation="DEFAULT" rollback-for="java.lang.Exception"/>
+				
+			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="del*" propagation="REQUIRED" isolation="DEFAULT" />			
+			<tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+	    <!-- 切入点 -->
+		<aop:advisor pointcut="execution(* com.example.service.*.*(..)))" advice-ref="txAdvice" />
+	</aop:config>
+ 
+<!-- 参考来源:http://blog.csdn.net/partner4java/article/details/7015946 -->
+</beans>

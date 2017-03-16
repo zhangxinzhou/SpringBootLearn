@@ -11,7 +11,7 @@ import com.example.domain.WiselyResponse;
 @Controller
 public class WebController {
 
-	@RequestMapping
+	@RequestMapping({"/","/index"})
 	public String index(){
 		return "index";
 	}

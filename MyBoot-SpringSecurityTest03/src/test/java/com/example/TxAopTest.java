@@ -27,10 +27,10 @@ public class TxAopTest {
 	@Test
 	public void test(){
 		try {
-			List<Student> slist=ss.AopTest(true);
+			List<Student> slist=ss.AopTest(false);
 			slist.forEach(System.out::println);
 		} catch (Exception e) {
-			System.out.println("发生异常");
+			System.out.println("发生异常,如果事务回滚,那么aop事务配置成功");
 		}		
 	}
 }

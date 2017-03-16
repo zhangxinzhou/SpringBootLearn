@@ -9,7 +9,7 @@ import com.example.anno.Notes;
 
 @Notes(author="zxz",lastmodifier="zxz",date="2017-2-15",value="首页,和mapingname测试")
 @Controller
-public class WebController {
+public class TestController {
 
 	@RequestMapping({"/","/index"})
 	public String index(){

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import com.example.service.DevpService;
-import com.example.web.WebController;
+import com.example.web.TestController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +37,7 @@ public class HandlerMappingTest {
 		});
 		System.out.println(handlerMapping.getHandlerMethodsForMappingName("nameTest"));		
 		
-		Method method=WebController.class.getDeclaredMethods()[0];
+		Method method=TestController.class.getDeclaredMethods()[0];
 		map.forEach((k,v)->{
 			if(v.getMethod()==method){
 				System.out.println("无法靠method判断,因为地址不一样:");
@@ -52,6 +52,6 @@ public class HandlerMappingTest {
 	
 	@Test
 	public void testMethodUtil(){
-		System.out.println(devpService.getMethods(WebController.class));
+		System.out.println(devpService.getMethods(TestController.class));
 	}
 }

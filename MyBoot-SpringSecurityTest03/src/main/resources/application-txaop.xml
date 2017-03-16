@@ -27,4 +27,5 @@
 	</aop:config>
  
 <!-- 参考来源:http://blog.csdn.net/partner4java/article/details/7015946 -->
+<!-- 传播级别和隔离级别可以看:http://blog.didispace.com/springboottransactional/ -->
 </beans>

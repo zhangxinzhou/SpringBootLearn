@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>packages</title>
+</head>
+<body>
+<a th:href="@{/}">首页</a>
+<a href="#" onclick="javascript:history.go(0)" >刷新</a>
+<a href="#" onclick="javascript:history.go(1)" >前进</a>
+<a href="#" onclick="javascript:history.go(-1)" >返回</a>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>包名</td>
+				<td>点击包名查看相应的类</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="d,iterStat : ${data}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${d}">包名</td>
+				<td><a th:href="'/classes?packagename='+${d}" th:text="${d}"></a></td>
+			</tr>
+		</tbody>
+	</table>
+<!-- js -->
+<script th:src="@{https://code.jquery.com/jquery-3.1.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/function.js}" type="text/javascript"></script>
+</body>
+</html>

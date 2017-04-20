@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> <!-- thymeleaf提供spring security的标签支持 -->
+<head>
+<meta charset="UTF-8" />
+<title>index</title>
+</head>
+<body>
+没错,这就是首页<br/>
+hello,<span sec:authentication="name" >用户名</span>
+</body>
+</html>

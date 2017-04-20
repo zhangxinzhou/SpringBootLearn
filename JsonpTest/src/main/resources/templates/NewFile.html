@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Test</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+function clickme(){
+	var version = $().jquery; 
+	console.log("---------------------分隔符------------------------");
+	console.log(this);
+	console.log("Jquery版本号:"+version);
+}
+//jsonp的回调方法()
+function _Callback(data){
+	console.log("---------------------分隔符------------------------");
+	console.log(this);
+	console.log("方法名:_Callback");
+	console.log(data);
+}
+
+function jsonptest01(){//这只是个获取json数据的方法
+	var url="http://localhost:8080/hello?name=jsonptest";
+	$.getJSON(url,function(data){ 	
+		console.log("---------------------分隔符------------------------");
+		console.log(this);
+		console.log(data);
+	});
+}
+function jsonptest02(){//jsonp需要服务端的支持才行,这个测试虽然成功了,但并未跨域
+    /*jsonp的原理：
+	首先在客户端注册一个callback (如:'jsoncallback'), 然后把callback的名字(如:success_jsonpCallback)传给服务器端对应的处理函数。
+	服务器先生成需要返回给客户端的 json 数据。然后以 javascript 语法的方式，生成一个function , function 名字就是传递上来的参数(jsoncallback)的值(success_jsonpCallback) 。
+	最后将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。
+	客户端浏览器，解析script标签，并将服务器端返回的数据，作为参数，
+	传入到了客户端预先定义好的 callback 函数(如上例中jquery $.ajax()方法封装的的success: function (json))里。
+	实际上跨域是通过动态增加script来加载数据，无法直接获得数据，所以需要使用回调函数。 */
+	var suffix="?callback=?";
+	var url="http://localhost:8080/jsonpTest"+suffix;//这是jsonp的方法(和获取json的方法是截然不同的),但是目前未跨域
+	$.getJSON(url,function(data){ 	
+		console.log("---------------------分隔符------------------------");
+		console.log(this);
+		console.log(data);
+	});
+}
+
+function jsonptest11(){//跨域获取json数据将会失败
+	var url="http://ip.taobao.com/service/getIpInfo.php";
+	$.getJSON(url,function(data){ 
+		console.log("---------------------分隔符------------------------");
+		console.log(this);
+		console.log(data);
+	});
+}
+function jsonptest12(){//jsonp是需要服务端支持的,所以单纯返回json数据的网站是不行的
+	var suffix="?callback=?";//这个必须要有,否则$.getJSON不会采用jsonp方式
+	var url="http://r.qzone.qq.com/cgi-bin/user/cgi_personal_card?uin=10000"+suffix; 
+	$.getJSON(url);//返回_Callback({"error":{"type":"[-99996][-4003]","msg":"QQ号码不存在"}});,相当于执行_Callback这个方法
+}
+
+function jsonptest21(){//jsonptest11方法的ajax原版形式
+	var url="http://ip.taobao.com/service/getIpInfo.php";	
+	$.ajax({
+		type:"get",
+		async:false,
+		url:url,
+		dataType:"jsonp",
+		jsonp:"callback",//服务端的jsonpTest方法,String callbackName=request.getParameter("callback");
+	    success:function(data){	   
+	    	console.log("---------------------分隔符------------------------");
+	    	console.log(this);
+			console.log(data);
+	    },
+	    error:function(){
+	    	console.log("---------------------分隔符------------------------");
+	    	console.log(this);
+	    	console.log("测试失败");
+	    }
+	});
+}
+//虽然jsonptest21,jsonptest22都获得了数据,但ajax会认为这两个方法都失败了,所以直接不写error:function()
+function jsonptest22(){//jsonptest12方法的ajax原版形式
+	var url="http://r.qzone.qq.com/cgi-bin/user/cgi_personal_card?uin=10000";
+	$.ajax({
+		type:"get",
+		async:false,
+		url:url,
+		dataType:"jsonp",
+		jsonp:"_Callback"
+	});
+}
+
+/*
+ $.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )
+ url是必选参数，表示json数据的地址；
+ data是可选参数，用于请求数据时发送数据参数；
+ success是可参数，这是一个回调函数，用于处理请求到的数据。
+ */
+function jsonptest31(){//将外网作为参数交给服务器转发,并获取服务器处理后的结果
+	var url="http://localhost:8080/crossDomain";
+	var jsonurl=$("#jsonurl").val();
+	if(jsonurl.replace(/(^s*)|(s*$)/g, "").length == 0){
+		jsonurl="http://ip.taobao.com/service/getIpInfo.php?ip=8.8.8.8";
+	}
+	var params={"target":jsonurl};
+	$.getJSON(url,params,function(data){ 	
+		console.log("---------------------分隔符------------------------");
+		console.log(this);	
+		console.log(data);
+		if(data.msg){alert(data.msg);}
+		
+	});
+}
+</script>
+</head>
+<body>
+<h4>测试JSON,JSONP跨域<span style="color:red;">(请打开浏览器的开发者工具,在Console中查看)</span></h4>
+	<ul>
+	    <li><button onclick="clickme();" title="JQUERY VERSION">click me!</button></li>
+		<li><button onclick="jsonptest01();" title="get json($.getJSON(),local)">测试01</button>未跨域测试获取json</li>
+		<li><button onclick="jsonptest02();" title="get jsonp($.getJSON(),local)">测试02</button>未跨域测试jsonp</li>
+		<li><button onclick="jsonptest11();" title="get json($.getJSON(),remote)">测试11</button>$.getJSON()跨域获取json数据将会失败</li>
+		<li><button onclick="jsonptest12();" title="get jsonp($.getJSON(),remote)">测试12</button>$.getJSON()jsonp方式</li>
+		<li><button onclick="jsonptest21();" title="get json($.ajax(),remote)">测试21</button>$.ajax()跨域获取json数据将会失败</li>
+		<li><button onclick="jsonptest22();" title="get jsonp($.ajax(),remote)">测试22</button>$.ajax()jsonp方式</li>
+		<li>
+		    <button onclick="jsonptest31();" title="get json($.getJSON(),forward )">测试31</button>
+		    <input id="jsonurl" type="text" size="100" placeholder="这里输入要跨域获取json的地址" />
+		</li>
+	</ul>
+<h2><a href="http://blog.csdn.net/iamduoluo/article/details/18762793" target="_blank">各种常用的JSON接口</a></h2>
+</body>
+</html>

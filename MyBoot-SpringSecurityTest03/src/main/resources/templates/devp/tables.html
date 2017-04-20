@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>tables</title>
+</head>
+<body>
+<a th:href="@{/}">首页</a>
+<a href="#" onclick="javascript:history.go(0)" >刷新</a>
+<a href="#" onclick="javascript:history.go(1)" >前进</a>
+<a href="#" onclick="javascript:history.go(-1)" >返回</a>
+<!-- tables.html是写死的,table.html是动态创建的,所以tables.html应该响应的速度更快 -->
+	<table border="1">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>表名</td>
+				<td>所在数据库</td>
+				<td>创建时间</td>
+				<td>最近一次更新时间</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+			</tr>
+		</tfoot>
+		<tbody th:each="d,iterStat : ${data}">
+			<tr>
+				<td th:text="${iterStat.count}">序号</td>
+				<td th:text="${d.TABLE_NAME}">表名</td>
+				<td th:text="${d.TABLE_SCHEMA}">所在数据库</td>
+				<td th:text="${d.CREATE_TIME}">创建时间</td>
+				<td th:text="${d.UPDATE_TIME}">最后一次更新时间</td>
+				<td><a th:href="'/table?tablename='+${d.TABLE_NAME}" th:text="@{点击查看详情}"></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -31,7 +31,7 @@ public class Test03 {
 		Future<List<Map<String, Object>>> future2 = service.submit(task2);
 		result.put("r1", future1.get());
 		result.put("r2", future2.get());
-		service.shutdown();   
+		service.shutdown();  //释放资源 
 		return result;
 	}
 	

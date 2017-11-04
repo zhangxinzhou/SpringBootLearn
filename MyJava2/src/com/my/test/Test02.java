@@ -23,7 +23,7 @@ public class Test02 {
 			task.setParams(params);
 			service.execute(task);
 		}
-		service.shutdown();
+		service.shutdown();//释放资源
 	}
 	
 	public static List<Map<String, Object>> getList(){

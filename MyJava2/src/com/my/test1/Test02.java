@@ -1,4 +1,4 @@
-package com.my.test;
+package com.my.test1;
 
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class Test02 {
 			task.setParams(params);
 			service.execute(task);
 		}
-		service.shutdown();//释放资源
+		service.shutdown();//释放资源 
 	}
 	
 	public static List<Map<String, Object>> getList(){

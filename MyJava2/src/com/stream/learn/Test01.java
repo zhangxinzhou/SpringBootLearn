@@ -28,13 +28,14 @@ public class Test01 {
 						(list1, list2) -> list1.addAll(list2)
 				);
 		
-		
+		//创建一个新的容器，制定要存放的类型
 		Supplier<ArrayList<Integer>> supplier=new Supplier<ArrayList<Integer>>() {
 			@Override
 			public ArrayList<Integer> get() {
 				return new ArrayList<Integer>();
 			}
 		};
+		//
 		BiConsumer<ArrayList<Integer>,Map<String,Object>> accumulator=new BiConsumer<ArrayList<Integer>, Map<String,Object>>() {
 			@Override
 			public void accept(ArrayList<Integer> list, Map<String, Object> item) {

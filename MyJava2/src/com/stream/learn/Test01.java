@@ -35,7 +35,6 @@ public class Test01 {
 				return new ArrayList<Integer>();
 			}
 		};
-		//
 		BiConsumer<ArrayList<Integer>,Map<String,Object>> accumulator=new BiConsumer<ArrayList<Integer>, Map<String,Object>>() {
 			@Override
 			public void accept(ArrayList<Integer> list, Map<String, Object> item) {
@@ -49,7 +48,6 @@ public class Test01 {
 			}
 		};
 		List<Integer> l2=lists.stream().collect(supplier, accumulator, combiner);
-		
 		System.out.println(lists);
 		System.out.println(l1);
 		System.out.println(l2);

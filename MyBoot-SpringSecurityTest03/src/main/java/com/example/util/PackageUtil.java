@@ -33,25 +33,6 @@ public class PackageUtil {
 		Set<String> packages=getClassName(packageName,false);
 		packages.forEach(System.out::println);
 				
-		/*//用java8的forEach方法来输出
-		//第一种方法
-		System.out.println("第一种方法:");
-		packages.forEach(cc->System.out.println(cc));
-		//第二种方法
-		System.out.println("第二种方法:");
-		packages.forEach(cc->{
-			if(cc.contains("LoginController")){
-				System.out.println(cc);
-			}
-		});
-		//第三种方法
-		System.out.println("第三种方法:");
-		packages.forEach(System.out::println);
-		//第四种方法
-		System.out.println("第四种方法:");
-		packages.stream()
-		   .filter(cc->cc.contains("LoginController"))
-		   .forEach(System.out::println);*/
 		System.out.println("---------------------------------------");
 		getPackages().forEach(pack->{
 			System.out.println("*****");
